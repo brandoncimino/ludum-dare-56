@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://c34nts3l3ui8c"]
+[gd_scene load_steps=2 format=3 uid="uid://rd2wsfrlqfr1"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://cyu3okrqpavla" path="res://cell.tscn" id="1_f3oxr"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.81796)
+projection = 1
+size = 50.0
+
+[node name="Cell" parent="." instance=ExtResource("1_f3oxr")]
