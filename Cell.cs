@@ -1,46 +1,38 @@
 using Godot;
 using System;
 using ludumdare56;
+using Timer = Godot.Timer;
 
 public partial class Cell : Node3D
 {
 	// cell properties
 	[Export()] private float rotation_speed = 5;
-	private Vector3 rotation_axis;
+	private Vector3 rotation_axis = Vector3.Zero;
 	
 	[Export()] private float movement_speed = 5;
-	private Vector3 tumbling_direction;
+	private Vector3 tumbling_direction = Vector3.Zero;
 	
 	// interaction with environment
 	[Export()] private CellManager manager;
+	private Timer timer_for_changing_movement;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		RandomNumberGenerator randomizer = new RandomNumberGenerator();
-		
-		rotation_axis = new Vector3(
-			randomizer.Randfn(0, 0.5f), 
-			randomizer.Randfn(0, 1), 
-			randomizer.Randfn(0, 0.25f)
-		);
-		rotation_axis = rotation_axis.Normalized();
-		
-		tumbling_direction = new Vector3(
-			randomizer.Randfn(0, 0.5f), 
-			randomizer.Randfn(0, 0.25f), 
-			randomizer.Randfn(0, 0.5f)
-		);
-		tumbling_direction.Y = Mathf.Min(tumbling_direction.Y, -0.5f);
-		tumbling_direction.Z = 0f;
-		// TODO: activate or deactivate based on distance to Z=0
-
+		on_timeout_for_change_movement();
 	}
 
 	public void Initialize(CellManager manager, Vector3 spawn_position)
 	{
 		manager = manager;
 		this.Position = spawn_position;
+		
+		timer_for_changing_movement = new Timer();
+		AddChild(timer_for_changing_movement);
+		timer_for_changing_movement.WaitTime = 3; //randomizer.RandfRange(1, 5); // in seconds
+		timer_for_changing_movement.OneShot = false;
+		timer_for_changing_movement.Timeout += on_timeout_for_change_movement;
+		timer_for_changing_movement.Autostart = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -98,6 +90,38 @@ public partial class Cell : Node3D
 		}
 		
 		return (position);
+	}
+
+	private void on_timeout_for_change_movement()
+	{
+		RandomNumberGenerator randomizer = new RandomNumberGenerator();
+		
+		// vector around we rotate
+		var adjustment_rotation = new Vector3(
+			randomizer.Randfn(0, 1f), 
+			randomizer.Randfn(0, 2), 
+			randomizer.Randfn(0, 0.5f)
+		);
+		adjustment_rotation = adjustment_rotation.Normalized();
+		
+		// take mean with previous direction to avoid too sudden changes
+		rotation_axis += 0.5f * adjustment_rotation;
+		rotation_axis = rotation_axis.Normalized();
+		
+		// direction in which we tumble
+		var adjustment_direction = new Vector3(
+			randomizer.Randfn(0, 1f), 
+			randomizer.Randfn(0, 0.5f), 
+			randomizer.Randfn(0, 1f)
+		);
+		// take mean with previous direction to avoid too sudden changes
+		tumbling_direction = (3 * tumbling_direction + adjustment_direction) / 4;
+		tumbling_direction.Y = Mathf.Min(tumbling_direction.Y, -0.5f);
+		tumbling_direction.Z = 0f;
+		// TODO: activate or deactivate based on distance to Z=0
+
+		timer_for_changing_movement.WaitTime = randomizer.RandfRange(1, 5); // in seconds;
+		timer_for_changing_movement.Start();
 	}
 
 	

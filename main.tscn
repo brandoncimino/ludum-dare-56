@@ -10,8 +10,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.81796)
 projection = 1
 size = 50.0
 
-[node name="Cell" parent="." instance=ExtResource("1_f3oxr")]
-
 [node name="CellManager" type="Node" parent="."]
 script = ExtResource("2_uggin")
 CellScene = ExtResource("1_f3oxr")

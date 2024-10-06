@@ -21,7 +21,7 @@ public partial class CellManager : Node
 		AddChild(timer_for_next_cell_spawn);
 		timer_for_next_cell_spawn.WaitTime = randomizer.RandfRange(1, 5); // in seconds
 		timer_for_next_cell_spawn.OneShot = true;
-		timer_for_next_cell_spawn.Timeout += time_for_next_cell_spawn;
+		timer_for_next_cell_spawn.Timeout += on_timeout_for_next_cell_spawn;
 		timer_for_next_cell_spawn.Autostart = true;
 	}
 	
@@ -29,7 +29,7 @@ public partial class CellManager : Node
 	public override void _Ready()
 	{
 		// populate the world with some cells to start out
-		for (var i = 0; i < 1; i++)
+		for (var i = 0; i < 10; i++)
 		{
 			spawn_a_cell(bool_spawn_at_top: false);
 		}
@@ -68,12 +68,15 @@ public partial class CellManager : Node
 		list_cells.Add(cell);
 	}
 
-	private void time_for_next_cell_spawn()
+	private void on_timeout_for_next_cell_spawn()
 	{
 		// spawn in a new cell
-		spawn_a_cell(true);
+		if (list_cells.Count < 200)
+		{
+			spawn_a_cell(true);
+		}
 		
-		// restart timer
+		// restart countdown from random time
 		timer_for_next_cell_spawn.WaitTime = randomizer.RandfRange(1, 5); // in seconds
 		timer_for_next_cell_spawn.Start();
 	}
