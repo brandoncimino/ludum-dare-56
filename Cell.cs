@@ -1,15 +1,11 @@
 using Godot;
-using System;
+using ludumdare56;
+using Timer = Godot.Timer;
 
-public partial class Cell : Node3D
+public partial class Cell : Area3D, ITouchable
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public void GetTouched(BacteriumArea toucher)
+    {
+        toucher.IncreaseHeat(0.1);
+    }
 }
