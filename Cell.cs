@@ -2,7 +2,7 @@ using Godot;
 using ludumdare56;
 using Timer = Godot.Timer;
 
-public partial class Cell : FlowParticle, ITouchable
+public partial class Cell : Area3D, ITouchable
 {
     public void GetTouched(BacteriumArea toucher)
     {
