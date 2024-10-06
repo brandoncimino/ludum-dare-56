@@ -1,6 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rd2wsfrlqfr1"]
 
 [ext_resource type="PackedScene" uid="uid://cyu3okrqpavla" path="res://cell.tscn" id="1_f3oxr"]
+[ext_resource type="Script" path="res://CellManager.cs" id="2_uggin"]
 [ext_resource type="PackedScene" uid="uid://d0n0e3bs5cl15" path="res://bacterium.tscn" id="2_wo87r"]
 [ext_resource type="PackedScene" uid="uid://dt07ifvbijugh" path="res://sugar.tscn" id="3_u1ob5"]
 
@@ -11,7 +12,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.81796)
 projection = 1
 size = 50.0
 
-[node name="Cell" parent="." instance=ExtResource("1_f3oxr")]
+[node name="CellManager" type="Node" parent="."]
+script = ExtResource("2_uggin")
+CellScene = ExtResource("1_f3oxr")
 
 [node name="Bacterium" parent="." instance=ExtResource("2_wo87r")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -4.09786, 0)
