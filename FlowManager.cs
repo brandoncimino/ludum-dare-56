@@ -9,20 +9,22 @@ public partial class FlowManager : Node
 	private RandomNumberGenerator randomizer;
 	[Export] public PackedScene CellScene { get; set; }
 	private List<Node> list_cells;
+	
+	[Export] public PackedScene SugarScene { get; set; }
 
-	private Timer timer_for_next_cell_spawn;
+	private Timer timer_for_next_particle_spawn;
 	
 	public FlowManager()
 	{
 		randomizer = new RandomNumberGenerator();
 		list_cells = new List<Node>();
 		
-		timer_for_next_cell_spawn = new Timer();
-		AddChild(timer_for_next_cell_spawn);
-		timer_for_next_cell_spawn.WaitTime = randomizer.RandfRange(1, 5); // in seconds
-		timer_for_next_cell_spawn.OneShot = true;
-		timer_for_next_cell_spawn.Timeout += on_timeout_for_next_cell_spawn;
-		timer_for_next_cell_spawn.Autostart = true;
+		timer_for_next_particle_spawn = new Timer();
+		AddChild(timer_for_next_particle_spawn);
+		timer_for_next_particle_spawn.WaitTime = randomizer.RandfRange(1, 5); // in seconds
+		timer_for_next_particle_spawn.OneShot = true;
+		timer_for_next_particle_spawn.Timeout += OnTimeoutForNextParticleSpawn;
+		timer_for_next_particle_spawn.Autostart = true;
 	}
 	
 	// Called when the node enters the scene tree for the first time.
@@ -40,11 +42,8 @@ public partial class FlowManager : Node
 	{
 	}
 
-	private void spawn_a_cell(bool bool_spawn_at_top)
+	private void spawn_a_particle(bool bool_spawn_at_top, FlowParticle particle)
 	{
-		// Create new instance of cell scene
-		Cell cell = CellScene.Instantiate<Cell>();
-		
 		// generate random spawn position in 2D world
 		Vector3 spawn_position = new Vector3(
 			randomizer.RandfRange(GameManager.boundary_left, GameManager.boundary_right),
@@ -59,25 +58,51 @@ public partial class FlowManager : Node
 		}
 
 		// initialize the cell
-		cell.Initialize(this, spawn_position);
+		particle.Initialize(this, spawn_position);
 			
 		// Spawn the cell by adding it to the Main scene.
-		AddChild(cell);
+		AddChild(particle);
+	}
+	private void spawn_a_cell(bool bool_spawn_at_top)
+	{
+		// Create new instance of cell scene
+		Cell cell = CellScene.Instantiate<Cell>();
+		
+		// spawn into the world
+		spawn_a_particle(bool_spawn_at_top, cell);
 		
 		// remember this cell in case we need it in the future
 		list_cells.Add(cell);
 	}
-
-	private void on_timeout_for_next_cell_spawn()
+	
+	private void spawn_a_sugar()
 	{
-		// spawn in a new cell
-		if (list_cells.Count < 200)
+		// Create new instance of cell scene
+		Sugar sugar = SugarScene.Instantiate<Sugar>();
+		
+		// spawn into the world
+		spawn_a_particle(true, sugar);
+	}
+
+	private void OnTimeoutForNextParticleSpawn()
+	{
+		var sample = randomizer.RandfRange(0, 1);
+		if (sample < 0.5)
 		{
-			spawn_a_cell(true);
+			// spawn in a new cell
+			if (list_cells.Count < 200)
+			{
+				spawn_a_cell(true);
+			}
+		}
+		else
+		{
+			// spawn in a sugar
+			spawn_a_sugar();
 		}
 		
 		// restart countdown from random time
-		timer_for_next_cell_spawn.WaitTime = randomizer.RandfRange(1, 5); // in seconds
-		timer_for_next_cell_spawn.Start();
+		timer_for_next_particle_spawn.WaitTime = randomizer.RandfRange(1, 5); // in seconds
+		timer_for_next_particle_spawn.Start();
 	}
 }

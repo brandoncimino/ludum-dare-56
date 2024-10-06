@@ -7,9 +7,9 @@
 [sub_resource type="SphereMesh" id="SphereMesh_pdunt"]
 
 [node name="Sugar" type="Node3D"]
+script = ExtResource("1_bkfg2")
 
 [node name="Area3D" type="Area3D" parent="."]
-script = ExtResource("1_bkfg2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_lyxnu")

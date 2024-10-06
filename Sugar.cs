@@ -2,7 +2,7 @@ using Godot;
 
 namespace ludumdare56;
 
-public partial class Sugar : Area3D, ITouchable
+public partial class Sugar : FlowParticle, ITouchable
 {
     public void GetTouched(BacteriumArea toucher)
     {
