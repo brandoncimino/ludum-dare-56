@@ -12,7 +12,7 @@ public partial class Cell : Node3D, ITouchable
     private Vector3 tumbling_direction = Vector3.Zero;
 
     // interaction with environment
-    [Export()] private CellManager manager;
+    [Export()] private FlowManager manager;
     private Timer timer_for_changing_movement;
 
     // Called when the node enters the scene tree for the first time.
@@ -21,7 +21,7 @@ public partial class Cell : Node3D, ITouchable
         on_timeout_for_change_movement();
     }
 
-    public void Initialize(CellManager manager, Vector3 spawn_position)
+    public void Initialize(FlowManager manager, Vector3 spawn_position)
     {
         manager = manager;
         this.Position = spawn_position;

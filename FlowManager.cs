@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using ludumdare56;
 using Timer = Godot.Timer;
 
-public partial class CellManager : Node
+public partial class FlowManager : Node
 {
 	private RandomNumberGenerator randomizer;
 	[Export] public PackedScene CellScene { get; set; }
@@ -12,7 +12,7 @@ public partial class CellManager : Node
 
 	private Timer timer_for_next_cell_spawn;
 	
-	public CellManager()
+	public FlowManager()
 	{
 		randomizer = new RandomNumberGenerator();
 		list_cells = new List<Node>();
