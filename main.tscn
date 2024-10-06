@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://rd2wsfrlqfr1"]
+[gd_scene load_steps=4 format=3 uid="uid://rd2wsfrlqfr1"]
 
 [ext_resource type="PackedScene" uid="uid://cyu3okrqpavla" path="res://cell.tscn" id="1_f3oxr"]
 [ext_resource type="PackedScene" uid="uid://d0n0e3bs5cl15" path="res://bacterium.tscn" id="2_wo87r"]
+[ext_resource type="PackedScene" uid="uid://dt07ifvbijugh" path="res://sugar.tscn" id="3_u1ob5"]
 
 [node name="Main" type="Node3D"]
 
@@ -14,3 +15,12 @@ size = 50.0
 
 [node name="Bacterium" parent="." instance=ExtResource("2_wo87r")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -4.09786, 0)
+
+[node name="Sugar" parent="." instance=ExtResource("3_u1ob5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87753, 5.28007, 0)
+
+[node name="Sugar2" parent="." instance=ExtResource("3_u1ob5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49223, 2.48018, 0)
+
+[node name="Sugar3" parent="." instance=ExtResource("3_u1ob5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.80945, -2.60772, 0)
