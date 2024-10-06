@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://rd2wsfrlqfr1"]
+[gd_scene load_steps=5 format=3 uid="uid://rd2wsfrlqfr1"]
 
 [ext_resource type="PackedScene" uid="uid://cyu3okrqpavla" path="res://cell.tscn" id="1_f3oxr"]
 [ext_resource type="Script" path="res://CellManager.cs" id="2_uggin"]

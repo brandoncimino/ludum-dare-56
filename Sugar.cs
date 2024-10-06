@@ -6,7 +6,6 @@ public partial class Sugar : Area3D, ITouchable
 {
     public void GetTouched(BacteriumArea toucher)
     {
-        toucher.Score(1);
         GetEaten();
     }
 
