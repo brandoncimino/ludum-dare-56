@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://rd2wsfrlqfr1"]
+[gd_scene load_steps=3 format=3 uid="uid://rd2wsfrlqfr1"]
 
 [ext_resource type="PackedScene" uid="uid://cyu3okrqpavla" path="res://cell.tscn" id="1_f3oxr"]
+[ext_resource type="PackedScene" uid="uid://d0n0e3bs5cl15" path="res://bacterium.tscn" id="2_wo87r"]
 
 [node name="Main" type="Node3D"]
 
@@ -10,3 +11,6 @@ projection = 1
 size = 50.0
 
 [node name="Cell" parent="." instance=ExtResource("1_f3oxr")]
+
+[node name="Bacterium" parent="." instance=ExtResource("2_wo87r")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -4.09786, 0)
