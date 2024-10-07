@@ -66,7 +66,7 @@ public partial class FlowManager : Node
 	private void spawn_a_cell(bool bool_spawn_at_top)
 	{
 		// Create new instance of cell scene
-		Cell cell = CellScene.Instantiate<Cell>();
+		FlowParticle cell = CellScene.Instantiate<FlowParticle>();
 		
 		// spawn into the world
 		spawn_a_particle(bool_spawn_at_top, cell);
@@ -78,7 +78,7 @@ public partial class FlowManager : Node
 	private void spawn_a_sugar()
 	{
 		// Create new instance of cell scene
-		Sugar sugar = SugarScene.Instantiate<Sugar>();
+		FlowParticle sugar = SugarScene.Instantiate<FlowParticle>();
 		
 		// spawn into the world
 		spawn_a_particle(true, sugar);

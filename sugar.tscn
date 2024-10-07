@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt07ifvbijugh"]
+[gd_scene load_steps=6 format=3 uid="uid://dt07ifvbijugh"]
 
 [ext_resource type="Script" path="res://Sugar.cs" id="1_bkfg2"]
+[ext_resource type="Script" path="res://FlowParticle.cs" id="1_t72e6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8fe1a"]
 
@@ -10,9 +11,11 @@
 albedo_color = Color(0, 1, 1, 1)
 
 [node name="Sugar" type="Node3D"]
-script = ExtResource("1_bkfg2")
+script = ExtResource("1_t72e6")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("1_bkfg2")
+parent = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_8fe1a")
