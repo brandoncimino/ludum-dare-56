@@ -22,3 +22,5 @@ SugarScene = ExtResource("3_u1ob5")
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -4.09786, 0)
 
 [node name="TheFuzz" parent="." instance=ExtResource("5_r5xp2")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
