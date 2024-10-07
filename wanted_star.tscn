@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c041gquggm3oy"]
+
+[ext_resource type="Texture2D" uid="uid://jv3npb8l2kw" path="res://star_empty.png" id="1_4bahe"]
+[ext_resource type="Script" path="res://WantedStar.cs" id="2_kdo01"]
+[ext_resource type="Texture2D" uid="uid://o4s8lajk2hsb" path="res://star_filled.png" id="3_lasvu"]
+
+[node name="WantedStar" type="TextureRect"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_4bahe")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("2_kdo01")
+_filledTexture = ExtResource("3_lasvu")

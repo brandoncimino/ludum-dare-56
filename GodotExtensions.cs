@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace ludumdare56;
@@ -22,4 +23,22 @@ public static class GodotExtensions
     public static Vector2 BottomLeft(this Rect2 rect2) => rect2.Position;
     public static Vector2 BottomRight(this Rect2 rect2) => new(rect2.Right(), rect2.Bottom());
     public static Vector2 TopRight(this Rect2 rect2) => rect2.End;
+
+    public static IEnumerable<Node> EnumerateChildren(this Node node, bool recursive = true,
+        bool includeInternal = false)
+    {
+        for (int i = 0; i < node.GetChildCount(includeInternal); i++)
+        {
+            var child = node.GetChild(i, includeInternal);
+            yield return child;
+
+            if (recursive)
+            {
+                foreach (var grandchild in EnumerateChildren(child, recursive, includeInternal))
+                {
+                    yield return grandchild;
+                }
+            }
+        }
+    }
 }

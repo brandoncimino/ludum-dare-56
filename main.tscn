@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://rd2wsfrlqfr1"]
+[gd_scene load_steps=6 format=3 uid="uid://rd2wsfrlqfr1"]
 
 [ext_resource type="PackedScene" uid="uid://cyu3okrqpavla" path="res://cell.tscn" id="1_f3oxr"]
 [ext_resource type="Script" path="res://FlowManager.cs" id="1_ovji0"]
 [ext_resource type="PackedScene" uid="uid://d0n0e3bs5cl15" path="res://bacterium.tscn" id="2_wo87r"]
 [ext_resource type="PackedScene" uid="uid://dt07ifvbijugh" path="res://sugar.tscn" id="3_u1ob5"]
+[ext_resource type="PackedScene" uid="uid://b2xr7xf7u21ti" path="res://TheFuzz.tscn" id="5_r5xp2"]
 
 [node name="Main" type="Node3D"]
 
@@ -19,3 +20,5 @@ SugarScene = ExtResource("3_u1ob5")
 
 [node name="Bacterium" parent="." instance=ExtResource("2_wo87r")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -4.09786, 0)
+
+[node name="TheFuzz" parent="." instance=ExtResource("5_r5xp2")]
