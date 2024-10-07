@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Godot;
 using ludumdare56;
@@ -16,7 +15,6 @@ public partial class BacteriumArea : Area3D
         var overlaps = GetOverlappingAreas();
         foreach (var touchable in overlaps.OfType<ITouchable>())
         {
-            Console.WriteLine($"{this} TOUCHED {touchable}");
             touchable.GetTouched(this);
         }
     }

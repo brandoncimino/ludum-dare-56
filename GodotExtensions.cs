@@ -41,4 +41,19 @@ public static class GodotExtensions
             }
         }
     }
+
+    public static IEnumerable<Node> EnumerateParents(this Node node, bool includeSelf = false)
+    {
+        if (includeSelf)
+        {
+            yield return node;
+        }
+
+        var parent = node.GetParent();
+        while (parent is not null)
+        {
+            yield return parent;
+            parent = parent.GetParent();
+        }
+    }
 }
