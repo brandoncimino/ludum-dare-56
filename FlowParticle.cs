@@ -21,9 +21,9 @@ public partial class FlowParticle : Node3D
         on_timeout_for_change_movement();
     }
 
-    public void Initialize(FlowManager manager, Vector3 spawn_position)
+    public void Initialize(FlowManager spawned_by, Vector3 spawn_position)
     {
-        manager = manager;
+        this.manager = spawned_by;
         this.Position = spawn_position;
 
         timer_for_changing_movement = new Timer();
