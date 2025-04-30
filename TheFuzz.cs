@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Immutable;
 using System.Diagnostics;
-using System.Linq;
 using Godot;
 using JetBrains.Annotations;
-using ludumdare56;
 
+namespace ludumdare56;
+
+[SceneTree]
 public partial class TheFuzz : Control
 {
     public const int MaxWantedLevel = 5;
@@ -25,16 +26,11 @@ public partial class TheFuzz : Control
 
     [Export] private PackedScene? WantedStarScene;
 
-    private HBoxContainer? _wantedStarContainer;
-
-    private HBoxContainer WantedStarContainer =>
-        _wantedStarContainer ??= this.GetChildren().OfType<HBoxContainer>().Single();
+    private HBoxContainer WantedStarContainer => _.WantedStarContainer;
 
     private ImmutableArray<WantedStar> _wantedStars;
-    private ProgressBar? _exactHeatBar;
-    private ProgressBar ExactHeatBar => _exactHeatBar ??= this.EnumerateChildren().OfType<ProgressBar>().Single();
-    private Label? _debugLabel;
-    private Label DebugLabel => _debugLabel ??= this.EnumerateChildren().OfType<Label>().Single();
+    private ProgressBar ExactHeatBar => _.DebugStuff.ProgressBar;
+    private Label DebugLabel => _.DebugStuff.Label;
 
     private bool IsCoolingOff => _timeSinceLastHeat >= HeatCooldown;
 

@@ -13,7 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_xjfxi")
 WantedStarScene = ExtResource("2_c3f5c")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="WantedStarContainer" type="HBoxContainer" parent="."]
 layout_direction = 3
 layout_mode = 1
 offset_right = 300.0
